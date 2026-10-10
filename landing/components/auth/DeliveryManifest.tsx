@@ -38,11 +38,9 @@ export function DeliveryManifest({ currentUser, onLogout, onStartOrder }: Delive
 
   const hasOrder = Boolean(currentUser?.orderStatus);
   const unitCount =
-    typeof currentUser?.units === "number" && currentUser.units > 0
+    typeof currentUser?.units === "number"
       ? currentUser.units
-      : currentUser?.assignedDevices?.length
-      ? currentUser.assignedDevices.length
-      : 1;
+      : currentUser?.assignedDevices?.length || 0;
 
   return (
     <div className="flex-1 flex items-center justify-center w-full h-full font-sans p-1 sm:p-2">

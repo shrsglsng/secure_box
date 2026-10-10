@@ -12,7 +12,7 @@ import { config } from "../config.js";
 async function syncResolvedUnits(user: any): Promise<number> {
   const reqs = await LockerRequest.find({ userId: user._id, status: { $ne: "rejected" } }).lean();
   const total = reqs.reduce((sum: number, r: any) => sum + (r.units || 1), 0);
-  const resolved = Math.max(total, user.assignedDevices?.length || 0, user.units || 1);
+  const resolved = Math.max(total, user.assignedDevices?.length || 0);
   if (user.units !== resolved) {
     user.units = resolved;
     await user.save();

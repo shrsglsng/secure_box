@@ -224,6 +224,8 @@ export async function registerWithOtp(request: FastifyRequest, reply: FastifyRep
     if (pincode && pincode.trim()) userData.pincode = pincode.trim();
     userData.units = units ? Number(units) || 1 : 1;
     userData.orderStatus = "pending";
+  } else {
+    userData.units = 0;
   }
 
   let newUser: any;
